@@ -1,0 +1,14 @@
+body {
+    background-color: #121212;
+    color: #ffffffa1;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+a {
+    color: #1e90ff;
+}
+
+a:hover {
+    color: #ff6347;
+}

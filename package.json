@@ -1,0 +1,50 @@
+{
+   "name": "presence-app",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "electron .",
+      "pack": "electron-builder --dir",
+      "dist": "electron-builder"
+   },
+   "build": {
+      "appId": "com.onblick.presence-app",
+      "productName": "PresenceApp",
+      "win": {
+         "target": "nsis",
+         "icon": "assets/icons/icon.ico"
+      },
+      "files": [
+         "index.html",
+         "email-input.html",
+         "index.js",
+         "page-renderer.js",
+         "styles.css",
+         "assets/**/*",
+         "utils/**/*"
+      ],
+      "directories":{
+         "buildResources": "build"
+      },
+      "publish":[
+         {
+            "provider": "github"
+         }
+      ]
+   },
+   "keywords": [],
+   "author": "aakarsh@rigaps.com",
+   "license": "ISC",
+   "devDependencies": {
+      "electron": "^32.1.2",
+      "electron-builder": "^25.0.5"
+   },
+   "dependencies": {
+      "@azure/msal-node": "^2.15.0",
+      "axios": "^1.7.7",
+      "dotenv": "^16.4.5",
+      "electron-store": "^10.0.0"
+   },
+   "description": "Presence App"
+}

@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
-const { getUserPresence, getUserIdFromMail } = require("./utils/teams-api");
+const { getUserPresence, getUserIdFromMail } = require("../utils/teams-api");
 const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
@@ -37,7 +37,7 @@ if (!gotTheLock) {
 
       if (!emails || emails.length === 0) {
          // If no emails are stored, load the email input form
-         mainWindow.loadFile("email-input.html");
+         mainWindow.loadFile("src/email-input.html");
       } else {
          // If emails exist, load the presence tracking UI
          loadPresenceTracking(emails);
@@ -88,7 +88,7 @@ if (!gotTheLock) {
       // Update window size for index.html
       mainWindow.setBounds({ width: 450, height: emails.length * 40 });
       // Load the main UI for tracking presence
-      mainWindow.loadFile("index.html");
+      mainWindow.loadFile("src/index.html");
 
       const fetchAndSendPresence = async () => {
          try {

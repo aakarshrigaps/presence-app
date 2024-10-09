@@ -1,7 +1,7 @@
 {
    "name": "presence-app",
    "version": "1.0.0",
-   "main": "index.js",
+   "main": "src/index.js",
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "start": "electron .",
@@ -16,11 +16,7 @@
          "icon": "assets/icons/icon.ico"
       },
       "files": [
-         "index.html",
-         "email-input.html",
-         "index.js",
-         "page-renderer.js",
-         "styles.css",
+         "src/**/*",
          "assets/**/*",
          "utils/**/*"
       ],

@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-const getImage = require("./utils/image-mapper");
+const getImage = require("../utils/image-mapper");
 
 // Wait until the DOM is fully loaded
 window.addEventListener("DOMContentLoaded", () => {

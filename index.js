@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const { getUserPresence, getUserIdFromMail } = require("./utils/teams-api");
+const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
 let store; // Declare store variable
@@ -22,6 +23,9 @@ if (!gotTheLock) {
    });
 
    app.on("ready", async () => {
+      // Check for updates when the app is ready
+      autoUpdater.checkForUpdatesAndNotify();
+
       // Dynamically import electron-store (ESM)
       const Store = (await import("electron-store")).default;
       store = new Store(); // Initialize the store
@@ -47,6 +51,20 @@ if (!gotTheLock) {
          // Load the presence tracking UI
          loadPresenceTracking(emails);
       });
+   });
+
+   // Auto-Updater Event Listeners
+   autoUpdater.on("update-available", () => {
+      console.log("Update available. Downloading...");
+   });
+
+   autoUpdater.on("update-downloaded", () => {
+      console.log("Update downloaded. Will install now.");
+      autoUpdater.quitAndInstall(); // Automatically quit and install the update
+   });
+
+   autoUpdater.on("error", (error) => {
+      console.error("Error during update:", error);
    });
 
    // Function to create a BrowserWindow with specific width and height

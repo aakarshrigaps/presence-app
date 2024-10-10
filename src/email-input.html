@@ -1,55 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Enter Emails</title>
-   <style>
-      body {
-         font-family: Arial, sans-serif;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         height: 100vh;
-         margin: 0;
-         background-color: #121212;
-         color: #ffffffa1;
-      }
-      #container {
-         text-align: center;
-      }
-      input {
-         display: block;
-         margin: 10px auto;
-         padding: 10px;
-         width: 80%;
-      }
-      button {
-         padding: 10px 20px;
-         cursor: pointer;
-      }
-   </style>
-</head>
-<body>
-   <div id="container">
-      <h1>Enter Email Addresses</h1>
-      <p>Enter the emails you want to track (comma separated):</p>
-      <input type="text" id="emailInput" placeholder="e.g., user1@example.com, user2@example.com" />
-      <button id="saveButton">Save</button>
-   </div>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Enter Emails</title>
+      <link href="email-page-styles.css" rel="stylesheet" />
+   </head>
+   <body>
+      <div id="container">
+         <h1>Enter Email Addresses</h1>
+         <p>Enter the emails you want to track (comma separated):</p>
+         <input
+            type="text"
+            id="emailInput"
+            placeholder="e.g., user1@example.com, user2@example.com"
+         />
+         <p id="errorMessage" style="color: red; display: none">
+            Please enter at least one email address.
+         </p>
+         <button id="saveButton">Save</button>
+      </div>
 
-   <script>
-      const { ipcRenderer } = require("electron");
-
-      document.getElementById("saveButton").addEventListener("click", () => {
-         const emailInput = document.getElementById("emailInput").value;
-
-         // Split input by comma and trim spaces
-         const emails = emailInput.split(",").map(email => email.trim());
-
-         // Send emails to the main process
-         ipcRenderer.send("save-emails", emails);
-      });
-   </script>
-</body>
+      <script src="email-handler.js"></script>
+   </body>
 </html>

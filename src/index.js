@@ -3,6 +3,7 @@ const { getUserPresence, getUserIdFromMail } = require("../utils/teams-api");
 const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
+let transparentWindow;
 let store; // Declare store variable
 
 // Check for single instance lock
@@ -30,13 +31,13 @@ if (!gotTheLock) {
       const Store = (await import("electron-store")).default;
       store = new Store(); // Initialize the store
 
-      mainWindow = createWindow(450, 250); // Default size for email-input.html
-
+      
       // Check if emails are already stored
       let emails = store.get("emails");
-
+      
       if (!emails || emails.length === 0) {
          // If no emails are stored, load the email input form
+         mainWindow = createWindow(450, 270); // Default size for email-input.html
          mainWindow.loadFile("src/email-input.html");
       } else {
          // If emails exist, load the presence tracking UI
@@ -47,7 +48,6 @@ if (!gotTheLock) {
          // Save emails to the store
          store.set("emails", userEmails);
          emails = userEmails;
-
          // Load the presence tracking UI
          loadPresenceTracking(emails);
       });
@@ -69,6 +69,22 @@ if (!gotTheLock) {
 
    // Function to create a BrowserWindow with specific width and height
    function createWindow(width, height) {
+      return new BrowserWindow({
+         width: width,
+         height: height,
+         roundedCorners: true,
+         webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false, // Required for ipcRenderer
+         },
+         alwaysOnTop: true,
+         autoHideMenuBar: true,
+         maximizable: false,
+         minimizable: false,
+      });
+   }
+
+   function createTransparentWindow(width, height) {
       const display = require("electron").screen.getPrimaryDisplay();
       const bounds = display.bounds;
 
@@ -97,9 +113,12 @@ if (!gotTheLock) {
 
    function loadPresenceTracking(emails) {
       // Update window size for index.html
-      mainWindow.setBounds({ width: 450, height: emails.length * 40 });
+      if (mainWindow) {
+         mainWindow.close();
+      }
+      transparentWindow = createTransparentWindow(450, emails.length * 40);
       // Load the main UI for tracking presence
-      mainWindow.loadFile("src/index.html");
+      transparentWindow.loadFile("src/index.html");
 
       const fetchAndSendPresence = async () => {
          try {
@@ -117,7 +136,7 @@ if (!gotTheLock) {
 
             // Log and send combined data (displayName + presence)
             // console.log(userPresenceData); debugging
-            mainWindow.webContents.send("presence", userPresenceData);
+            transparentWindow.webContents.send("presence", userPresenceData);
          } catch (error) {
             console.error("Error fetching presence data:", error);
          }

@@ -69,9 +69,20 @@ if (!gotTheLock) {
 
    // Function to create a BrowserWindow with specific width and height
    function createWindow(width, height) {
+      const display = require("electron").screen.getPrimaryDisplay();
+      const bounds = display.bounds;
+
+      // Calculate the position for bottom right corner
+      const startX = bounds.width - 450; // Adjust this value to change the width
+      const startY = bounds.height - 200; // Adjust this value to change the height
       return new BrowserWindow({
+         x: startX,
+         y: startY,
          width: width,
          height: height,
+         transparent: true,
+         frame: false,
+         roundedCorners: true,
          webPreferences: {
             nodeIntegration: true,
             contextIsolation: false, // Required for ipcRenderer
@@ -105,7 +116,7 @@ if (!gotTheLock) {
             }));
 
             // Log and send combined data (displayName + presence)
-            console.log(userPresenceData);
+            // console.log(userPresenceData); debugging
             mainWindow.webContents.send("presence", userPresenceData);
          } catch (error) {
             console.error("Error fetching presence data:", error);

@@ -1,14 +1,23 @@
 body {
-    background-color: #121212;
-    color: #ffffffa1;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
+   -webkit-app-region: drag; /* Make the whole window draggable */
+   background-color: rgba(0, 0, 0, 0.5);
+   color: #ffffffa1;
+   font-family: Arial, sans-serif;
+   border-radius: 10px;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Add subtle shadow effect */
+   font-size: 12px;
+   overflow: hidden; /* Prevent scroll-bars */
 }
 
-a {
-    color: #1e90ff;
+body:hover {
+    cursor: grab;
 }
 
-a:hover {
-    color: #ff6347;
+body:active {
+    cursor: grabbing;
+}
+
+/* Prevent dragging on buttons */
+button {
+   -webkit-app-region: no-drag;
 }

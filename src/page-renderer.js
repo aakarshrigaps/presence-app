@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
          statusIcon.style.height = "12px";
 
          // Add text content for the user's presence information
-         if (presence.availability !== "Available") {
+         if (availability !== "Available") {
             listItem.textContent = `${userName}: ${activity} | Last seen: ${
                presence.lastAvailableDateTime || "N/A"
             }`;

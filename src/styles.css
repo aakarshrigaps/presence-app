@@ -9,14 +9,6 @@ body {
    overflow: hidden; /* Prevent scroll-bars */
 }
 
-body:hover {
-    cursor: grab;
-}
-
-body:active {
-    cursor: grabbing;
-}
-
 /* Prevent dragging on buttons */
 button {
    -webkit-app-region: no-drag;

@@ -32,7 +32,7 @@ async function getAccessToken() {
 
    accessToken = authResponse.accessToken;
    tokenExpiresAt = new Date(
-      new Date().getTime() + authResponse.expiresIn * 1000
+      new Date().getTime() + authResponse.expiresOn * 1000
    );
 
    return accessToken;

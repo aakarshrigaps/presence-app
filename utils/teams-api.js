@@ -31,9 +31,7 @@ async function getAccessToken() {
    });
 
    accessToken = authResponse.accessToken;
-   tokenExpiresAt = new Date(
-      new Date().getTime() + authResponse.expiresOn * 1000
-   );
+   tokenExpiresAt = authResponse.expiresOn;
 
    return accessToken;
 }

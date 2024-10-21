@@ -31,10 +31,9 @@ if (!gotTheLock) {
       const Store = (await import("electron-store")).default;
       store = new Store(); // Initialize the store
 
-      
       // Check if emails are already stored
       let emails = store.get("emails");
-      
+
       if (!emails || emails.length === 0) {
          // If no emails are stored, load the email input form
          mainWindow = createWindow(450, 270); // Default size for email-input.html
@@ -90,7 +89,7 @@ if (!gotTheLock) {
 
       // Calculate the position for bottom right corner
       const startX = bounds.width - 450; // Adjust this value to change the width
-      const startY = bounds.height - 200; // Adjust this value to change the height
+      const startY = bounds.height - 180; // Adjust this value to change the height
       return new BrowserWindow({
          x: startX,
          y: startY,
@@ -116,7 +115,7 @@ if (!gotTheLock) {
       if (mainWindow) {
          mainWindow.close();
       }
-      transparentWindow = createTransparentWindow(450, emails.length * 40);
+      transparentWindow = createTransparentWindow(450, emails.length * 30);
       // Load the main UI for tracking presence
       transparentWindow.loadFile("src/index.html");
 
@@ -142,10 +141,20 @@ if (!gotTheLock) {
          }
       };
 
+      const updatePresenceBasedOnConnection = async () => {
+         const isOnline = (await import("is-online")).default;
+         const online = await isOnline();
+         if (!online) {
+            transparentWindow.webContents.send("presence", "No Internet");
+         } else {
+            fetchAndSendPresence();
+         }
+      };
+
       // Fetch presence data immediately on load
-      fetchAndSendPresence();
+      updatePresenceBasedOnConnection();
 
       // Set interval to fetch and send presence data every 30 seconds
-      setInterval(fetchAndSendPresence, 30000);
+      setInterval(updatePresenceBasedOnConnection, 30000);
    }
 }

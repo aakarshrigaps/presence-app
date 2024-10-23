@@ -32,8 +32,8 @@ if (!gotTheLock) {
       store = new Store(); // Initialize the store
 
       // Check if emails are already stored
-      let emails = store.get("emails");
-
+      let emails = store.get("emails")?.slice(0, 7);
+      
       if (!emails || emails.length === 0) {
          // If no emails are stored, load the email input form
          mainWindow = createWindow(450, 270); // Default size for email-input.html
@@ -45,8 +45,9 @@ if (!gotTheLock) {
 
       ipcMain.on("save-emails", (event, userEmails) => {
          // Save emails to the store
-         store.set("emails", userEmails);
-         emails = userEmails;
+          const limitedEmails = userEmails.slice(0, 7);
+          store.set("emails", limitedEmails);
+          emails = limitedEmails;
          // Load the presence tracking UI
          loadPresenceTracking(emails);
       });

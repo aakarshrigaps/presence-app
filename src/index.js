@@ -33,7 +33,7 @@ if (!gotTheLock) {
 
       // Check if emails are already stored
       let emails = store.get("emails")?.slice(0, 7);
-      
+
       if (!emails || emails.length === 0) {
          // If no emails are stored, load the email input form
          mainWindow = createWindow(450, 270); // Default size for email-input.html
@@ -45,9 +45,9 @@ if (!gotTheLock) {
 
       ipcMain.on("save-emails", (event, userEmails) => {
          // Save emails to the store
-          const limitedEmails = userEmails.slice(0, 7);
-          store.set("emails", limitedEmails);
-          emails = limitedEmails;
+         const limitedEmails = userEmails.slice(0, 7);
+         store.set("emails", limitedEmails);
+         emails = limitedEmails;
          // Load the presence tracking UI
          loadPresenceTracking(emails);
       });
@@ -89,8 +89,8 @@ if (!gotTheLock) {
       const bounds = display.bounds;
 
       // Calculate the position for bottom right corner
-      const startX = bounds.width - 450; // Adjust this value to change the width
-      const startY = bounds.height - 180; // Adjust this value to change the height
+      const startX = bounds.width - width; // Adjust this value to change the width
+      const startY = bounds.height - height - 40; // Adjust this value to change the height
       return new BrowserWindow({
          x: startX,
          y: startY,
@@ -116,7 +116,7 @@ if (!gotTheLock) {
       if (mainWindow) {
          mainWindow.close();
       }
-      transparentWindow = createTransparentWindow(450, emails.length * 30);
+      transparentWindow = createTransparentWindow(450, emails.length * 10 + 66);
       // Load the main UI for tracking presence
       transparentWindow.loadFile("src/index.html");
 

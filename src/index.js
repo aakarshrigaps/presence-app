@@ -142,9 +142,22 @@ if (!gotTheLock) {
          }
       };
 
+      async function checkInternetConnection() {
+         try {
+            const response = await fetch("https://www.google.com/", {
+               method: "HEAD",
+               mode: "no-cors",
+            });
+            // If we get here, it means the fetch was successful
+            return true;
+         } catch (error) {
+            // An error occurred, indicating no connection
+            return false;
+         }
+      }
+
       const updatePresenceBasedOnConnection = async () => {
-         const isOnline = (await import("is-online")).default;
-         const online = await isOnline();
+         const online = await checkInternetConnection();
          if (!online) {
             transparentWindow.webContents.send("presence", "No Internet");
          } else {

@@ -43,8 +43,7 @@
       "axios": "^1.7.7",
       "dotenv": "^16.4.5",
       "electron-store": "^10.0.0",
-      "electron-updater": "^6.3.9",
-      "is-online": "^11.0.0"
+      "electron-updater": "^6.3.9"
    },
    "description": "Presence App"
 }

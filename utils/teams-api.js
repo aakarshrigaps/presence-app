@@ -1,9 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const msal = require("@azure/msal-node");
-client_Id = process.env.CLIENT_ID;
-tenant_id = process.env.TENANT_ID;
-client_secret = process.env.CLIENT_SECRET;
+const { client_id, tenant_id, client_secret } = require("./decrypt-secrets");
 
 let accessToken = null;
 let tokenExpiresAt = null;
@@ -13,7 +11,7 @@ const presenceState = {};
 // MSAL configuration
 const msalConfig = {
    auth: {
-      clientId: client_Id,
+      clientId: client_id,
       authority: `https://login.microsoftonline.com/${tenant_id}`,
       clientSecret: client_secret,
    },

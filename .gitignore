@@ -32,3 +32,6 @@ dist/
 
 # Windows
 Thumbs.db
+
+# Encryption
+encrypt-secrets.js

@@ -15,6 +15,17 @@
          "target": "nsis",
          "icon": "assets/images/logo.ico"
       },
+      "mac": {
+         "target": "dmg",
+         "icon": "assets/images/logo.icns"
+      },
+      "linux": {
+         "target": [
+            "AppImage",
+            "deb"
+         ],
+         "icon": "assets/images/logo.png"
+      },
       "files": [
          "src/**/*",
          "assets/**/*",

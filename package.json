@@ -40,7 +40,7 @@
             "provider": "github",
             "owner": "aakarshrigaps",
             "repo": "presence-app",
-            "releaseType": "draft"
+            "publish": "always"
          }
       ]
    },

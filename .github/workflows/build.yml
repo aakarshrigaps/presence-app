@@ -31,6 +31,8 @@ jobs:
 
       - name: Build Electron App
         run: npm run dist
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3

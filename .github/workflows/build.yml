@@ -39,3 +39,22 @@ jobs:
         with:
           name: presence-app-${{ matrix.os }}
           path: dist/
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}  # Use the tag name from the push
+          release_name: Release ${{ github.ref }}  # Release name
+          draft: false  # Set to true if you want a draft release
+          files: dist/**  # Specify files to upload from the dist directory
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication

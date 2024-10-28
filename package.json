@@ -39,7 +39,8 @@
          {
             "provider": "github",
             "owner": "aakarshrigaps",
-            "repo": "presence-app"
+            "repo": "presence-app",
+            "releaseType": "draft"
          }
       ]
    },

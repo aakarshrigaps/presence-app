@@ -9,6 +9,7 @@
       "dist": "electron-builder",
       "mwl": "electron-builder -mwl"
    },
+   "publish": "always",
    "build": {
       "appId": "com.onblick.presence-app",
       "productName": "PresenceApp",

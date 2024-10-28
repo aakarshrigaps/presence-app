@@ -26,13 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Electron App
+      - name: Build and Publish Electron App
         run: npm run mwl  # This builds for macOS, Windows, and Linux simultaneously
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: presence-app
-          path: dist/

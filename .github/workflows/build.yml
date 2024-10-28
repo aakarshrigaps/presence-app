@@ -12,10 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: macos-latest  # Run on macOS for macOS-specific builds
 
     steps:
       - name: Check out repository
@@ -30,14 +27,14 @@ jobs:
         run: npm install
 
       - name: Build Electron App
-        run: npm run dist
+        run: npm run mwl  # This builds for macOS, Windows, and Linux simultaneously
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: presence-app-${{ matrix.os }}
+          name: presence-app
           path: dist/
 
   release:

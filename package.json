@@ -44,7 +44,10 @@
       ]
    },
    "keywords": [],
-   "author": "aakarsh@rigaps.com",
+   "author": {
+      "name": "Sai Aakarsh",
+      "email": "aakarsh@rigaps.com"
+   },
    "license": "ISC",
    "devDependencies": {
       "electron": "^32.1.2",

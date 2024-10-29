@@ -16,6 +16,7 @@ module.exports = {
       },
    ],
    packagerConfig: {
+      name: "Presence App",
       asar: true,
       icon: "assets/images/logo",
    },

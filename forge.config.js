@@ -17,6 +17,7 @@ module.exports = {
    ],
    packagerConfig: {
       asar: true,
+      icon: "assets/images/logo",
    },
    rebuildConfig: {},
    makers: [
@@ -28,9 +29,9 @@ module.exports = {
          },
       },
       {
-         //for zip
+         //for macos
          name: "@electron-forge/maker-zip",
-         platforms:["darwin","linux","win32"],
+         platforms:["darwin"],
          config: {
             icon: "assets/images/logo.icns",
          },
@@ -42,13 +43,6 @@ module.exports = {
             options: {
                icon: "assets/images/logo.png",
             },
-         },
-      },
-      {
-         //for macos
-         name: "@electron-forge/maker-dmg",
-         config: {
-          icon: "assets/images/logo.icns",
          },
       },
    ],

@@ -11,7 +11,7 @@ on:
     types: [created, published]
 
 jobs:
-  build:
+  build-macos:
     runs-on: macos-latest  # Run on macOS for macOS-specific builds
 
     steps:
@@ -29,7 +29,7 @@ jobs:
       - name: Build and Publish Electron App
         run: npm run publish
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   build-windows:
     runs-on: windows-latest  # Run on Windows for Windows-specific builds
@@ -49,7 +49,7 @@ jobs:
       - name: Build and Publish Electron App
         run: npm run publish
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
   build-linux:
     runs-on: ubuntu-latest  # Run on Ubuntu for Linux-specific builds
@@ -69,4 +69,4 @@ jobs:
       - name: Build and Publish Electron App
         run: npm run publish
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

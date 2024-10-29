@@ -30,22 +30,22 @@ module.exports = {
          },
       },
       {
-         //for macos
+         //for multi-platforms
          name: "@electron-forge/maker-zip",
-         platforms:["darwin"],
+         platforms:["darwin", "linux", "win32"],
          config: {
-            icon: "assets/images/logo.icns",
+            icon: "assets/images/logo",
          },
       },
-      {
-         //for linux
-         name: "@electron-forge/maker-deb",
-         config: {
-            options: {
-               icon: "assets/images/logo.png",
-            },
-         },
-      },
+      // {
+      //    //for linux
+      //    name: "@electron-forge/maker-deb",
+      //    config: {
+      //       options: {
+      //          icon: "assets/images/logo.png",
+      //       },
+      //    },
+      // },
    ],
    plugins: [
       {

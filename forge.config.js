@@ -22,16 +22,15 @@ module.exports = {
    makers: [
       {
          //for windows
-         name: "@electron-forge/maker-squirrel",
+         name: "@electron-forge/maker-wix",
          config: {
-            iconUrl: "assets/images/logo.ico",
-            setupIcon: "assets/images/logo.ico",
+            icon: "assets/images/logo.ico",
          },
       },
       {
-         //for mac
+         //for zip
          name: "@electron-forge/maker-zip",
-         platforms: ["darwin"],
+         platforms:["darwin","linux","win32"],
          config: {
             icon: "assets/images/logo.icns",
          },
@@ -46,9 +45,11 @@ module.exports = {
          },
       },
       {
-         //for linux
-         name: "@electron-forge/maker-rpm",
-         config: {},
+         //for macos
+         name: "@electron-forge/maker-dmg",
+         config: {
+          icon: "assets/images/logo.icns",
+         },
       },
    ],
    plugins: [

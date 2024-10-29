@@ -35,3 +35,5 @@ Thumbs.db
 
 # Encryption
 encrypt-secrets.js
+
+out/

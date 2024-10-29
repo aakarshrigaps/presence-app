@@ -1,66 +1,78 @@
 {
-   "name": "presence-app",
-   "version": "1.2.0",
-   "main": "src/index.js",
-   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "electron .",
-      "pack": "electron-builder --dir",
-      "dist": "electron-builder",
-      "mwl": "electron-builder -mwl"
-   },
-   "publish": "always",
-   "build": {
-      "appId": "com.onblick.presence-app",
-      "productName": "PresenceApp",
-      "win": {
-         "target": "nsis",
-         "icon": "assets/images/logo.ico"
-      },
-      "mac": {
-         "target": "dmg",
-         "icon": "assets/images/logo.icns"
-      },
-      "linux": {
-         "target": [
-            "AppImage",
-            "deb"
-         ],
-         "icon": "assets/images/logo.png"
-      },
-      "files": [
-         "src/**/*",
-         "assets/**/*",
-         "utils/**/*"
+  "name": "presence-app",
+  "version": "1.2.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "mwl": "electron-builder -mwl",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "publish": "always",
+  "build": {
+    "appId": "com.onblick.presence-app",
+    "productName": "PresenceApp",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/images/logo.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/images/logo.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
       ],
-      "directories": {
-         "buildResources": "build"
-      },
-      "publish": [
-         {
-            "provider": "github",
-            "owner": "aakarshrigaps",
-            "repo": "presence-app",
-            "releaseType": "draft"
-         }
-      ]
-   },
-   "keywords": [],
-   "author": {
-      "name": "Sai Aakarsh",
-      "email": "aakarsh@rigaps.com"
-   },
-   "license": "ISC",
-   "devDependencies": {
-      "electron": "^32.1.2",
-      "electron-builder": "^25.0.5"
-   },
-   "dependencies": {
-      "@azure/msal-node": "^2.15.0",
-      "axios": "^1.7.7",
-      "dotenv": "^16.4.5",
-      "electron-store": "^10.0.0",
-      "electron-updater": "^6.3.9"
-   },
-   "description": "Presence App"
+      "icon": "assets/images/logo.png"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "utils/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "aakarshrigaps",
+        "repo": "presence-app",
+        "releaseType": "draft"
+      }
+    ]
+  },
+  "keywords": [],
+  "author": {
+    "name": "Sai Aakarsh",
+    "email": "aakarsh@rigaps.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.5.0",
+    "@electron-forge/maker-deb": "^7.5.0",
+    "@electron-forge/maker-rpm": "^7.5.0",
+    "@electron-forge/maker-squirrel": "^7.5.0",
+    "@electron-forge/maker-zip": "^7.5.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.5.0",
+    "@electron-forge/plugin-fuses": "^7.5.0",
+    "@electron-forge/publisher-github": "^7.5.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^32.1.2"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^2.15.0",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-store": "^10.0.0",
+    "electron-updater": "^6.3.9"
+  },
+  "description": "Presence App"
 }

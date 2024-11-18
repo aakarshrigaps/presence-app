@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const { getUserPresence, getUserIdFromMail } = require("../utils/teams-api");
 const { autoUpdater } = require("electron-updater");
+const log = require("electron-log");
 
 let mainWindow;
 let transparentWindow;
@@ -8,6 +9,27 @@ let store; // Declare store variable
 
 // Check for single instance lock
 const gotTheLock = app.requestSingleInstanceLock();
+
+autoUpdater.on("update-downloaded", () => {
+   log.info("Update downloaded, restarting the app...");
+   autoUpdater.quitAndInstall();
+});
+
+autoUpdater.on("checking-for-update", () => {
+   log.info("Checking for updates...");
+});
+
+autoUpdater.on("update-available", () => {
+   log.info("Update available, downloading...");
+});
+
+autoUpdater.on("update-not-available", () => {
+   log.info("No updates available.");
+});
+
+autoUpdater.on("download-progress", (progress) => {
+   log.info("Download progress:", progress.percent);
+});
 
 if (!gotTheLock) {
    // If the lock is not acquired, quit the app
@@ -36,7 +58,7 @@ if (!gotTheLock) {
 
       if (!emails || emails.length === 0) {
          // If no emails are stored, load the email input form
-         mainWindow = createWindow(450, 270); // Default size for email-input.html
+         mainWindow = createWindow(450, 300); // Default size for email-input.html
          mainWindow.loadFile("src/email-input.html");
       } else {
          // If emails exist, load the presence tracking UI

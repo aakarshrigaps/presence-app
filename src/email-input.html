@@ -3,17 +3,26 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Enter Emails</title>
+      <title>Presence Tracker</title>
       <link href="email-page-styles.css" rel="stylesheet" />
+      <link
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+         rel="stylesheet"
+      />
    </head>
    <body>
       <div id="container">
          <h1>Enter Email Addresses</h1>
-         <p>Enter the emails you want to track (comma separated):</p>
+         <p>
+         <span class="tooltip">
+            <i class="fa-solid fa-info-circle"></i>
+            <span class="tooltiptext">Maximum 7 emails</span>
+         </span>
+            Enter the emails you want to track (comma separated):</p>
          <input
             type="text"
             id="emailInput"
-            placeholder="Enter up to 7 emails, e.g., user1@example.com, user2@example.com"
+            placeholder="e.g., user1@example.com, user2@example.com"
          />
          <p id="errorMessage" style="color: red; display: none">
             Please enter at least one email address.

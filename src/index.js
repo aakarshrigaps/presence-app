@@ -28,7 +28,7 @@ autoUpdater.on("update-not-available", () => {
 });
 
 autoUpdater.on("download-progress", (progress) => {
-   log.info("Download progress:", progress.percent);
+   log.info("Download progress:", progress.percent.toFixed(2) + "%");
 });
 
 if (!gotTheLock) {
@@ -99,6 +99,7 @@ if (!gotTheLock) {
             nodeIntegration: true,
             contextIsolation: false, // Required for ipcRenderer
          },
+         devTools: app.isPackaged ? false : true,
          alwaysOnTop: true,
          autoHideMenuBar: true,
          maximizable: false,
@@ -125,6 +126,7 @@ if (!gotTheLock) {
             nodeIntegration: true,
             contextIsolation: false, // Required for ipcRenderer
          },
+         devTools: app.isPackaged ? false : true,
          alwaysOnTop: true,
          autoHideMenuBar: true,
          maximizable: false,

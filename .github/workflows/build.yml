@@ -7,9 +7,7 @@ on:
   pull_request:
     branches:
       - master
-  release:
-    types: [created, published]
-
+      
 jobs:
   build-macos:
     runs-on: macos-latest  # Run on macOS for macOS-specific builds
